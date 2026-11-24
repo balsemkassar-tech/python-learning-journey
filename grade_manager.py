@@ -1,16 +1,14 @@
 
-# Student Grade Manager
+import json
 
 students = []
 
 number = int(input("How many students? "))
 
 for i in range(number):
-
     print("\nStudent", i + 1)
 
     name = input("Name: ")
-
     grades = []
 
     for j in range(3):
@@ -27,16 +25,20 @@ for i in range(number):
 
     students.append(student)
 
-
+# Display results
 print("\n===== STUDENT RESULTS =====")
 
 for student in students:
     print("Name:", student["name"])
-    print("Grades:", student["grades"])
     print("Average:", round(student["average"], 2))
 
-
+# Find best student
 best_student = max(students, key=lambda s: s["average"])
 
 print("\nBest student:", best_student["name"])
-print("Highest average:", round(best_student["average"], 2))
+
+# Save data to JSON file
+with open("students.json", "w") as file:
+    json.dump(students, file, indent=4)
+
+print("\nStudent data saved successfully!")
