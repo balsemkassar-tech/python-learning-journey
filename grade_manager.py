@@ -1,20 +1,42 @@
 
 # Student Grade Manager
 
-print("===== STUDENT GRADE MANAGER =====")
+students = []
 
-# Get student information
-name = input("Enter student name: ")
+number = int(input("How many students? "))
 
-# Get three grades
-grade1 = float(input("Enter grade 1: "))
-grade2 = float(input("Enter grade 2: "))
-grade3 = float(input("Enter grade 3: "))
+for i in range(number):
 
-# Calculate average
-average = (grade1 + grade2 + grade3) / 3
+    print("\nStudent", i + 1)
 
-# Display results
-print("\n===== RESULTS =====")
-print("Student:", name)
-print("Average:", round(average, 2))
+    name = input("Name: ")
+
+    grades = []
+
+    for j in range(3):
+        grade = float(input("Grade " + str(j + 1) + ": "))
+        grades.append(grade)
+
+    average = sum(grades) / 3
+
+    student = {
+        "name": name,
+        "grades": grades,
+        "average": average
+    }
+
+    students.append(student)
+
+
+print("\n===== STUDENT RESULTS =====")
+
+for student in students:
+    print("Name:", student["name"])
+    print("Grades:", student["grades"])
+    print("Average:", round(student["average"], 2))
+
+
+best_student = max(students, key=lambda s: s["average"])
+
+print("\nBest student:", best_student["name"])
+print("Highest average:", round(best_student["average"], 2))
